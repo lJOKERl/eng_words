@@ -1,5 +1,24 @@
 "use strict";
 
+/* Настройка Яндекс API */
+
+
+var voice = function (text) {
+
+	var url = "https://tts.voicetech.yandex.net/generate?"+ 
+	"key=35614106-41f0-40c2-9160-7ac384125935" +
+	"&text=" + text +
+	"&format=wav" +
+	"&lang=en-US" +
+	"&speaker=jane";
+
+	audio.src = url;
+	audio.load();
+	audio.onloadeddata = function (argument) {
+		audio.play();
+	}
+}
+
 /* Фильтр слов по первой букве */
 var letter;
 
@@ -29,6 +48,11 @@ search.oninput = function filterList () {
 					pop.style.display = "none";            
 			    	wrap.style.display = "none"; 
 				}
+
+				wrap.onclick = function (e) {
+					pop.style.display = "none";            
+			    	wrap.style.display = "none"; 
+				}
 				
 				if (words[i].eng === this.innerText) {
 					console.log(words[i].eng + " - " + words[i].rus)
@@ -51,22 +75,11 @@ search.oninput = function filterList () {
 		    		span.id = "cls";
 		    		eng.textContent = words[i].eng;
 		    		rus.textContent = words[i].rus;
+		    		voice(eng.textContent);
 				}
 			}
 		}
-
-
 	}
-
-	wrap.onclick = function (e) {
-		pop.style.display = "none";            
-    	wrap.style.display = "none"; 
-	}
-
-	
-
-
-
 };
 
 function openPop(argument) {
