@@ -3,7 +3,9 @@
 /* Фильтр слов по первой букве */
 var letter;
 
-search.oninput = function () {
+search.focus();
+
+search.oninput = function filterList () {
 	letter = this.value;
 	
 	for (var i = 0; i < words.length; i++) {
@@ -21,17 +23,39 @@ search.oninput = function () {
 
 	for (var i = 0; i < wlink.length; i++) {
 		wlink[i].onclick = function (e) {
-			pop.style.display = "block";            
-    		wrap.style.display = "block";
+    		for (var i = 0; i < words.length; i++) {
 
-    		var p = document.createElement("p");
+    			cls.onclick = function (e) {
+					pop.style.display = "none";            
+			    	wrap.style.display = "none"; 
+				}
+				
+				if (words[i].eng === this.innerText) {
+					console.log(words[i].eng + " - " + words[i].rus)
+					pop.style.display = "block";            
+		    		wrap.style.display = "block";
 
-    		pop.innerHTML = "";
+		    		var eng = document.createElement("p");
+		    		var rus = document.createElement("p");
+		    		var span = document.createElement("span");
 
-    		pop.appendChild(p);
-    		p.classList = "title";
-    		p.textContent = this.innerText;
+		    		pop.innerHTML = "";
+
+		    		span.textContent = "X";
+
+		    		pop.appendChild(eng);
+		    		pop.appendChild(rus);
+		    		pop.appendChild(span);
+		    		eng.classList = "eng";
+		    		rus.classList = "rus";
+		    		span.id = "cls";
+		    		eng.textContent = words[i].eng;
+		    		rus.textContent = words[i].rus;
+				}
+			}
 		}
+
+
 	}
 
 	wrap.onclick = function (e) {
@@ -39,13 +63,15 @@ search.oninput = function () {
     	wrap.style.display = "none"; 
 	}
 
-	cls.onclick = function (e) {
-		pop.style.display = "none";            
-    	wrap.style.display = "none"; 
-	}
+	
+
+
+
 };
 
-
+function openPop(argument) {
+	console.log(this)
+}
 
 
 

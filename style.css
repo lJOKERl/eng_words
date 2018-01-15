@@ -39,17 +39,27 @@ body {
 	bottom: 0;
 	padding: .5em;
 	font-size: 1.5em;
-	overflow-y: scroll;
+	overflow-y: hidden;
 }
 
 #cls {
 	position: absolute;
     right: .75em;
+    top: .25em;
     cursor: pointer;
     color: #999;
 }
 
-#pop .title {
+#pop .eng,
+#pop .rus {
 	text-align: center;
 	font-size: 1.5em;
+	margin: 0;
+}
+
+#pop .eng {margin-top: 1em}
+
+#pop .rus {
+	font-size: 1em;
+	color: brown;
 }
