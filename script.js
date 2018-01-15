@@ -10,6 +10,8 @@ var voice = function (text) {
 	"&text=" + text +
 	"&format=wav" +
 	"&lang=en-US" +
+	"&emotion=neutral" +
+	"&speed=0.9" +
 	"&speaker=jane";
 
 	audio.src = url;
