@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>Изучение слов</title>
-	<link rel="stylesheet" type="text/css" href="style.css" />
-
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 </head>
 <body>
 
@@ -12,14 +12,24 @@
 <!-- Всплывающие окна -->
 <div id="wrap" ></div>
 <div id="pop">
-	<span id="cls">x</span>
+	<span id="cls"></span>
 </div>
 
-<input type="text" id="search" name="">
+<div id="wrapper">
+	<div class="header">
+		<div class="left">
+			<input type="text" id="search" name="">
+		</div>
+		<div class="right">
+			<button title="Новые" id="new_w" onclick="showMeNew()"><i class='fa fa-circle-o' aria-hidden='true'></i></button>
+			<button title="Изученные" id="done_w" onclick="showMeDone()"><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+		</div>
+	</div>
 
-<!-- Основной блок -->
-<div id="main">
-	
+	<!-- Основной блок -->
+	<div id="main">
+		
+	</div>
 </div>
 
 <script type="text/javascript" src="data.js"></script>

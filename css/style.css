@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i&subset=cyrillic');
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.2em;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#wrapper {
+	margin: 0 auto;
+	width: 80%;
+}
+
+#main a {
+	color: #3B83CD;
+	text-decoration: none;
+}
+
+#main p {
+	border-bottom: 1px dotted #bbb;
+	margin: .3em 0;
+	display: table;
+	width: 100%;
+	align-items: center;
+}
+
+#main p .fa.fa-microphone {
+	cursor: pointer;
+	color: #3B83CD;
+	margin-right: .25em;
+}
+
+.header {
+	height: 60px;
+	background: #eee;
+	display: flex;
+	align-items: center;
+	padding: 0 1em;
+}
+
+.header .left {
+	width: 50%
+}
+
+.header .right {
+	display: flex;
+	height: 30px;
+	width: 50%;
+}
+
+.header .right button {
+	cursor: pointer;
+	margin-right: .2em;
+}
+
+/* PopUp */
+#wrap {
+	opacity: 0.9;
+	position: fixed;
+	display: none;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 100;
+	overflow: auto;
+	background: #333;
+	cursor: pointer;
+}
+
+#pop {
+	width: 40%;
+	height: 50%;
+	margin: 50px auto;
+	background: #fff;
+	position: fixed;
+	z-index: 200;
+	display: none;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: .5em;
+	font-size: 1.5em;
+	overflow-y: hidden;
+	border-radius: 5px;
+	box-shadow: 3px 5px 5px #333;
+}
+
+#cls,
+#pop_del,
+#pop_stat,
+#pop_stat_done {
+	position: absolute;
+	cursor: pointer;
+	color: #999;
+}
+
+#cls {
+    right: .75em;
+    top: .25em;
+}
+
+#pop_del {
+    right: .75em;
+    bottom: .5em;
+}
+
+#pop_stat,
+#pop_stat_done {
+	left: .75em;
+	top: .5em;
+}
+
+
+
+#pop_stat.done {color: #4CBA00}
+#pop_del:hover {color: #7E0809}
+#pop_stat:hover {color: #4CBA00}
+
+#pop .eng,
+#pop .rus {
+	text-align: center;
+	font-size: 1.5em;
+	margin: 0;
+}
+
+#pop .eng {margin-top: 1em}
+
+#pop .rus {
+	font-size: 1em;
+	color: brown;
+}
+
+#pop #big_mic {
+	display: table;
+    cursor: pointer;
+    font-size: 4em;
+    margin: .2em auto;
+    background: #eee;
+    width: 1.4em;
+    border-radius: 50%;
+    text-align: center;
+    color: #405786;
+}
+
+#pop #big_mic:hover {
+	background: #ddd;
+}
+
+#pop #big_mic:active i {
+	color: #7E0809;
+}
+
+#search {
+	width: 1.2em;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+i.fa.fa-times:hover {color: #7E0809}
