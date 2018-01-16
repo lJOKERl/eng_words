@@ -18,188 +18,162 @@ var voice = function (text) {
 	}
 }
 
-new_w.onmousedown = function (argument) {
-	main.innerHTML = "";
+var headBtns = document.querySelectorAll(".normal");
+
+/* Функция дла очистки классов */
+function clearClasses(arr, cls) {
+	for (var i = 0; i < arr.length; i++) {
+		arr[i].classList = cls;
+	}
 }
 
-done_w.onmousedown = function (argument) {
-	main.innerHTML = "";
-}
+function showMeList(argument) {
+	var p = document.createElement("p");
 
-/* Фильтры по статусу слова */
-function showMeDone() {
 	for (var i = 0; i < words.length; i++) {
 		var p = document.createElement("p");
-
-		if (words[i].isDone) {
-			p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i> <a href='#' class='open'>" + words[i].eng + "</a>" + " - " + words[i].rus;
+		var span = document.querySelectorAll(".mark");
+		
+		if (words[i].isDone == true) {
 			main.appendChild(p);
-		}
 
-		search.oninput = function (argument) {
-			var letter = this.value;
-
-			for (var i = 0; i < words.length; i++) {
-				if (words[i].eng[0] === letter) {
-					main.innerHTML = "";
-					p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i> <a href='#' class='open'>" + words[i].eng + "</a>" + " - " + words[i].rus;
-					main.appendChild(p);
-				} 
-			}
+			p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i>" +
+						   "<a href='#' onclick='openPop(event.target)' class='open' >" + words[i].eng + "</a>" + 
+						   " - " + words[i].rus + "<span class='mark'></span>";
 		}
 	}
+} showMeList();
+
+
+function refresh() {
+	main.innerHTML = "";
 }
 
 function showMeNew() {
+	clearClasses(headBtns, "normal");
+	refresh();
+
+	new_w.classList.add("active");
+
 	for (var i = 0; i < words.length; i++) {
 		var p = document.createElement("p");
+		var span = document.querySelectorAll(".mark");
 		
-		if (!words[i].isDone) {
-			p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i> <a href='#' class='open'>" + words[i].eng + "</a>" + " - " + words[i].rus;
+		if (words[i].isDone !== true) {
+
 			main.appendChild(p);
+
+			p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i>" +
+						   "<a href='#' onclick='openPop(event.target)' class='open'>" + words[i].eng + "</a>" + 
+						   " - " + words[i].rus + "<span class='mark'></span>";
 		}
+	}
 
-		search.oninput = function (argument) {
-			var letter = this.value;
+	var mic = document.querySelectorAll(".fa-microphone");
 
-			if (words[i].eng[0] === letter) {
-				main.innerHTML = "";
-				console.log(words[i].eng )
-				p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i> <a href='#' class='open'>" + words[i].eng + "</a>" + " - " + words[i].rus;
-				main.appendChild(p);
-			} else if (!letter) {
-				main.innerHTML = "";
-			}
+	for (var i = 0; i < mic.length; i++) {
+		mic[i].onclick = function() {
+			voice(this.nextElementSibling.textContent)
 		}
 	}
 }
 
-/* Фильтр слов по первой букве */
-var letter,
-	mic = document.getElementsByTagName("i");
+function showMeDone() {
+	clearClasses(headBtns, "normal");
+	refresh();
 
-search.focus();
-
-var filterList = search.oninput = function () {
-	letter = this.value;
+	done_w.classList.add("active");
 
 	for (var i = 0; i < words.length; i++) {
 		var p = document.createElement("p");
-		if (words[i].eng[0] === letter) {
-			p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i> <a href='#' class='open'>" + words[i].eng + "</a>" + " - " + words[i].rus;
+		var span = document.querySelectorAll(".mark");
+		
+		if (words[i].isDone == true) {
+
 			main.appendChild(p);
-		} else if (!letter) {
-			main.innerHTML = "";
+
+			p.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i>" +
+						   "<a href='#' onclick='openPop(event.target)' class='open'>" + words[i].eng + "</a>" + 
+						   " - " + words[i].rus + "<span class='mark'></span>";
 		}
 	}
 
+	var mic = document.querySelectorAll(".fa-microphone");
+
 	for (var i = 0; i < mic.length; i++) {
-		mic[i].onclick = function (e) {
+		mic[i].onclick = function() {
 			voice(this.nextElementSibling.textContent)
 		}
 	}
+	
+}
 
-	/* Отрываем pop-up по клику на слове */
-	var wlink = document.querySelectorAll('.open');
+var eng = document.querySelector(".eng");
+var rus = document.querySelector(".rus");
 
-	for (var i = 0; i < wlink.length; i++) {
-		wlink[i].onclick = function (e) {
-    		for (var i = 0; i < words.length; i++) {
+function openPop() {
+	pop.style.display = "block";
+	wrap.style.display = "block";
+	var target = event.target;
 
-    			/* Закрываем окно при клике на крестик */
-    			cls.onclick = function (e) {
-					pop.style.display = "none";            
-			    	wrap.style.display = "none"; 
-				}
+	voice(target.textContent)
 
-				/* Закрываем окно при клике на боди */
-				wrap.onclick = function (e) {
-					pop.style.display = "none";            
-			    	wrap.style.display = "none"; 
-				}
-				
-				/* Отображаем окно и выводим в него информацию */
-				if (words[i].eng === this.innerText) {
-					pop.style.display = "block";            
-		    		wrap.style.display = "block";
-
-		    		/* Генерируем DOM */
-		    		var eng = document.createElement("p");
-		    		var rus = document.createElement("p");
-		    		var mic = document.createElement("p");
-		    		var del = document.createElement("span");
-		    		var span = document.createElement("span");
-		    		var status = document.createElement("span")
-
-		    		pop.innerHTML = "";
-		    		span.innerHTML = "<i class='fa fa-times' aria-hidden='true'></i>";
-		    		mic.innerHTML = "<i class='fa fa-microphone' aria-hidden='true'></i>";
-		    		del.innerHTML = "<i class='fa fa-trash-o' aria-hidden='true'></i>";
-		    		status.innerHTML = "<i class='fa fa-circle-o' aria-hidden='true'></i>";
-
-		    		pop.appendChild(eng);
-		    		pop.appendChild(rus);
-		    		pop.appendChild(span);
-		    		pop.appendChild(mic);
-		    		pop.appendChild(del);
-		    		pop.appendChild(status);
-
-		    		eng.classList = "eng";
-		    		rus.classList = "rus";
-		    		mic.id = "big_mic";
-		    		del.id = "pop_del";
-		    		span.id = "cls";
-		    		status.id = "pop_stat";
-
-		    		if (words[i].isDone == true) {
-		    			status.classList.add("done");
-		    			status.innerHTML = "<i class='fa fa-check-circle' aria-hidden='true'></i>"
-		    		} else {
-		    			status.classList.remove("done")
-		    			status.innerHTML = "<i class='fa fa-circle-o' aria-hidden='true'></i>";
-		    		}
-
-		    		var pop_word = words[i];
-		    		var k = i;
-
-		    		status.onclick = function () {
-		    			if (pop_word.isDone) {
-		    				pop_word.isDone = false;
-		    				console.log(pop_word.isDone);
-		    				status.classList.remove("done")
-		    				status.innerHTML = "<i class='fa fa-circle-o' aria-hidden='true'></i>";
-
-		    			} else {
-		    				pop_word.isDone = true;
-		    				console.log(pop_word.isDone)
-		    				status.classList.add("done");
-		    				status.innerHTML = "<i class='fa fa-check-circle' aria-hidden='true'></i>"
-		    			}
-		    		}
-
-		    		del.onclick = function () {
-		    			words.splice([k], 1);
-		    			pop.style.display = "none";            
-			    		wrap.style.display = "none"; 
-		    		}	    		
-
-		    		eng.textContent = words[i].eng;
-		    		rus.textContent = words[i].rus;
-
-		    		big_mic.onclick = function (e) {
-		    			voice(eng.textContent);
-		    		}
-				}
-			}
+	for (var i = 0; i < words.length; i++) {
+		if (words[i].eng == target.textContent) {
+			eng.textContent = words[i].eng;
+			rus.textContent = words[i].rus;
 		}
 	}
-};
+}/^[а-я],[0-9]+$/i
 
+/* Меняем статус слова */
+function changeStatus(argument) {
+	var target = event.target;
+	
+	if (pop_stat.classList == "done") {
+		pop_stat.classList.remove("done")
+		pop_stat.innerHTML = "<i class='fa fa-circle-o' aria-hidden='true'></i>";
 
+	} else {
+		pop_stat.classList.add("done");
+		pop_stat.innerHTML = "<i class='fa fa-check-circle' aria-hidden='true'></i>"
+	}
 
+}
 
+/* Озвучиваем слово при нажатии на маленькую кнопку в списке */
+var mic = document.querySelectorAll(".fa-microphone");
 
+for (var i = 0; i < mic.length; i++) {
+	mic[i].onclick = function (argument) {
+		voice(this.nextElementSibling.textContent);
+	}
+}
 
+/* Озвучиваем слово при нажатии кнопки в popUp */
+big_mic.onclick = function () {
+	var eng = document.querySelector(".eng");
+	voice(eng.textContent);
+}
+
+/* Закрываем окно при клике на крестик */
+cls.onclick = function (e) {
+	pop.style.display = "none";            
+	wrap.style.display = "none"; 
+}
+
+/* Удаляем элемент из массива и закрываем окно */
+pop_del.onclick = function (e) {
+	pop.style.display = "none";            
+	wrap.style.display = "none"; 
+	//Дописать удаление
+}
+
+/* Закрываем окно при клике на боди */
+wrap.onclick = function (e) {
+	pop.style.display = "none";            
+	wrap.style.display = "none"; 
+}
 
 
 

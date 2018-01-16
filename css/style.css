@@ -8,6 +8,10 @@ body {
 	box-sizing: border-box;
 }
 
+*{
+	outline: none;
+}
+
 #wrapper {
 	margin: 0 auto;
 	width: 80%;
@@ -52,7 +56,30 @@ body {
 
 .header .right button {
 	cursor: pointer;
-	margin-right: .2em;
+	font-size: 1.1em;
+	background: #f3f3f3;
+}
+
+#new_w {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border: 1px solid #aaa;
+	border-right: none;
+}
+
+#done_w {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border: 1px solid #aaa;
+}
+
+
+#new_w.active,
+#done_w.active {
+	background: #11A0F2;
+	color: #fff;
+	border: 1px solid #11A0F2;
+	border-right: none;
 }
 
 /* PopUp */
@@ -114,9 +141,7 @@ body {
 	top: .5em;
 }
 
-
-
-#pop_stat.done {color: #4CBA00}
+#pop_stat {color: #4CBA00}
 #pop_del:hover {color: #7E0809}
 #pop_stat:hover {color: #4CBA00}
 
@@ -137,7 +162,7 @@ body {
 #pop #big_mic {
 	display: table;
     cursor: pointer;
-    font-size: 4em;
+    font-size: 3.5em;
     margin: .2em auto;
     background: #eee;
     width: 1.4em;
@@ -161,3 +186,7 @@ body {
 }
 
 i.fa.fa-times:hover {color: #7E0809}
+
+.list_status {
+	float: right;
+}
