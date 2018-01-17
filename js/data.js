@@ -3729,4 +3729,4 @@ var words = [{eng: "diminish",rus: "уменьшать", isDone: true},
 {eng: "interesting",rus: "интересный", isDone: false},
 {eng: "love",rus: "любовь", isDone: false},
 {eng: "student",rus: "студент", isDone: false},
-{eng: "want",rus: "хотеть, желать, хотеть, желать", isDone: false}]
+{eng: "want",rus: "хотеть, желать", isDone: false}]

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Изучение слов</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+</head>
+<body>
+
+ <audio src="" id="audio"></audio>
+
+<!-- Всплывающие окна -->
+<div id="wrap" ></div>
+<div id="pop">
+	<span id="cls"><i class='fa fa-times' aria-hidden='true'></i></span>
+	<span id="pop_del"><i class='fa fa-trash-o' aria-hidden='true'></i></span>
+	<span id="pop_stat" onclick="changeStatus(event.target)"><i class='fa fa-circle-o' aria-hidden='true'></i></span>
+	<p class="eng"></p>
+	<p class="rus"></p>
+	<p id="big_mic"><i class='fa fa-microphone' aria-hidden='true'></i></p>
+</div>
+
+<div id="wrapper">
+	<div class="header">
+		<div class="left">
+			<input type="text" id="search" name="" maxlength="1" oninput="this.value = this.value.replace(/^[а-я\d\s]+$/i, '')">
+		</div>
+		<div class="right">
+			<button title="Новые" id="new_w" onclick="showMeNew()" class="normal" ><i class='fa fa-circle-o' aria-hidden='true'></i></button>
+			<button title="Изученные" id="done_w" class="normal" onclick="showMeDone()"><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+		</div>
+	</div>
+
+	<!-- Основной блок -->
+	<div id="main">
+		
+	</div>
+</div>
+
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+
+</body>
+</html>

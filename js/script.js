@@ -124,7 +124,7 @@ function openPop() {
 			rus.textContent = words[i].rus;
 		}
 	}
-}/^[а-я],[0-9]+$/i
+}
 
 /* Меняем статус слова */
 function changeStatus(argument) {
@@ -138,7 +138,6 @@ function changeStatus(argument) {
 		pop_stat.classList.add("done");
 		pop_stat.innerHTML = "<i class='fa fa-check-circle' aria-hidden='true'></i>"
 	}
-
 }
 
 /* Озвучиваем слово при нажатии на маленькую кнопку в списке */
@@ -175,5 +174,14 @@ wrap.onclick = function (e) {
 	wrap.style.display = "none"; 
 }
 
+/* Переворачиваем карточку */
+var init = function() {
+  var card = document.getElementById('card');
+  
+  document.getElementById('flip').addEventListener( 'click', function(){
+    card.toggleClassName('flipped');
+  }, false);
+};
 
+window.addEventListener('DOMContentLoaded', init, false);
 
